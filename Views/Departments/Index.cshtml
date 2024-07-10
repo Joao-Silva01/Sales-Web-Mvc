@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<Sales_Web_Mvc.Models.Department>
 
 @{
-    ViewData["Title"] = "Index";
+    //ViewData["Title"] = "Index";
+    ViewData["Title"] = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
