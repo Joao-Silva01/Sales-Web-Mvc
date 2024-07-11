@@ -19,19 +19,19 @@
             @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd class="col-sm-11">
-            @Model.Email
+            @Html.DisplayFor(model => model.Email)
         </dd>
         <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.BirthDate)
         </dt>
         <dd class="col-sm-11">
-            @Model.BirthDate.ToShortDateString()
+            @Html.DisplayFor(model => model.BirthDate)
         </dd>
         <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.BaseSalary)
         </dt>
         <dd class="col-sm-11">
-            @Model.BaseSalary.ToString("N2", CultureInfo.CurrentCulture)
+            @Html.DisplayFor(model => model.BaseSalary)
         </dd>
         <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.Department)
@@ -42,6 +42,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a> |
     <a asp-action="Index">Back to list</a>
 </div>

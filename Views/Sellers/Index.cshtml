@@ -36,13 +36,13 @@
                     @item.Name
                 </td>
                 <td>
-                    @item.Email
+                    @Html.DisplayFor(modelitem => item.Email)
                  </td>
                 <td>
-                    @item.BirthDate.ToShortDateString()
+                    @Html.DisplayFor(modelitem => item.BirthDate)
                 </td>
                 <td>
-                    @item.BaseSalary.ToString("N2", CultureInfo.CurrentCulture)
+                    @Html.DisplayFor(modelitem => item.BaseSalary)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

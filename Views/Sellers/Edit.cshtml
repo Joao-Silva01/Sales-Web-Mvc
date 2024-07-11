@@ -8,7 +8,7 @@
 <h4>Seller</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-controller="Sellers" asp-action="Edit">
             <input type="hidden" asp-for="Seller.Id" />
             <div class="form-group">
@@ -33,7 +33,9 @@
             </div>
             <p></p>
             <div class="form-group">
-                <input type="submit" value="Save" class=" btn btn-light" />
+                <input type="submit" value="Save" class=" btn btn-light" /> |
+                <a asp-action="Delete" asp-route-id="@Model.Seller.Id" class="btn btn-danger">Delete</a> |
+                <a asp-action="Index">Back to list</a>
             </div>
         </form>
     </div>
