@@ -6,7 +6,7 @@ namespace Sales_Web_Mvc.Services
 {
     public class DepartmentService(Sales_Web_MvcContext context)
     {
-        private Sales_Web_MvcContext _context = context;
+        private readonly Sales_Web_MvcContext _context = context;
 
         public async Task<List<Department>> FindAllAsync()
         {

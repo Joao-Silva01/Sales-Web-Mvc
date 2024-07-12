@@ -19,6 +19,11 @@ namespace Sales_Web_Mvc.Data
             modelBuilder.Entity<Department>().ToTable("Department");
             modelBuilder.Entity<Seller>().ToTable("Seller");
             modelBuilder.Entity<SalesRecord>().ToTable("SalesRecord");
+
+            modelBuilder.Entity<SalesRecord>()
+            .HasOne(f => f.Seller)
+            .WithMany(p => p.Sales)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

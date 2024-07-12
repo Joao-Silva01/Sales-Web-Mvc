@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Sales_Web_Mvc.Data;
 using Sales_Web_Mvc.Models;
+using Sales_Web_Mvc.Models.ViewModels;
+using System.Diagnostics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sales_Web_Mvc.Controllers
 {
@@ -134,19 +137,37 @@ namespace Sales_Web_Mvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var department = await _context.Department.FindAsync(id);
-            if (department != null)
+            try
             {
-                _context.Department.Remove(department);
-            }
+                var department = await _context.Department.FindAsync(id);
+                if (department != null)
+                {
+                    _context.Department.Remove(department);
+                }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException e) 
+            {
+                return RedirectToAction(nameof(Error), new 
+                { message = "Department cannot be deleted as there are Sellers registered." });
+            }
         }
 
         private bool DepartmentExists(int id)
         {
             return _context.Department.Any(e => e.Id == id);
+        }
+
+        public IActionResult Error(string message)
+        {
+            ErrorViewModel errorViewModel = new() 
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(errorViewModel);
         }
     }
 }
