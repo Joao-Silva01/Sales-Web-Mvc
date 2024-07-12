@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sales_Web_Mvc.Models
 {
@@ -13,21 +14,23 @@ namespace Sales_Web_Mvc.Models
         [EmailAddress(ErrorMessage = "Enter a valid email")]
         [Display(Name = "E-mail")]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string Email { get; set; } = "";
 
         [Required(ErrorMessage = "{0} required")]
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "{0} required")]
-        [Range(100.0,50000.0, ErrorMessage ="{0} must be from {1} to {2}")]
+        [Range(100.0, 50000.0, ErrorMessage = "{0} must be from {1} to {2}")]
         [Display(Name = "Base Salary")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
-        public double BaseSalary { get; set; }
-        public Department Department { get; set; }
+        public double BaseSalary { get; set; } = 0.0;
+
+        [ValidateNever]
+        public Department? Department { get; set; }
         public int DepartmentId { get; set; }
-        public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
+        public ICollection<SalesRecord> Sales { get; set; } = [];
 
         public Seller() { }
 
